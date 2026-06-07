@@ -61,7 +61,10 @@ set ANTHROPIC_API_KEY=your-key-here
 # Mac/Linux
 export ANTHROPIC_API_KEY=your-key-here
 ```
-Get your API key at: https://console.anthropic.com
+> **Note:** This project uses a "bring your own API key" model.
+> Your key stays on your machine and is never shared.
+> Each run costs approximately $0.002 in API credits.
+> Get your free API key at https://console.anthropic.com
 
 ### 5. Run the agent
 ```bash
@@ -71,7 +74,7 @@ python src/agent.py
 ---
 
 ## 📋 Sample Output
-============================================================
+===========================================================
 FINANCIAL ANALYSIS AGENT — EXECUTIVE REPORT
 Hypothetical Industries Ltd. demonstrates a solid earnings base with EAT
 of ₹15.75L against a controlled interest burden. The ICR of 6.25x is
