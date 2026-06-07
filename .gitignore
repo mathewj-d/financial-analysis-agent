@@ -1,3 +1,14 @@
+# Environment & API Keys — NEVER upload
+.env
+*.env
+
+# Virtual environment
+venv/
+.venv/
+
+# VS Code
+.vscode/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
