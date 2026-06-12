@@ -1,9 +1,25 @@
 import ssl
+import time
+import random
+import json
+import os
 import requests
 import urllib3
+from datetime import datetime
+
 urllib3.disable_warnings()
 
+# Mimic a real browser so Yahoo Finance doesn't block the request
+_session = requests.Session()
+_session.verify = False
+_session.headers.update({
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+})
+
 import yfinance as yf
+
+CACHE_DIR = "data/cache"
+os.makedirs(CACHE_DIR, exist_ok=True)
 
 # Create a session that bypasses SSL verification
 _session = requests.Session()
@@ -31,6 +47,15 @@ def fetch_indian_stock(ticker: str, exchange: str = "NSE") -> dict:
     full_ticker = f"{ticker.upper()}{suffix}"
 
     print(f"\nFetching live data for {full_ticker} from Yahoo Finance...")
+    # Check cache first — avoids hammering Yahoo during development
+    cache_file = f"{CACHE_DIR}/{full_ticker}_{datetime.today().date()}.json"
+    if os.path.exists(cache_file):
+        print("Loading from local cache...")
+        with open(cache_file, "r") as f:
+            return json.load(f)
+
+    # Random delay to avoid rate limiting
+    time.sleep(random.uniform(2.0, 4.0))
 
     try:
         stock = yf.Ticker(full_ticker, session=_session)
@@ -140,6 +165,10 @@ def fetch_indian_stock(ticker: str, exchange: str = "NSE") -> dict:
         print(f"  Total Assets      : ₹{total_assets:,.0f}" if total_assets else "  Total Assets      : N/A")
         print(f"{'='*50}\n")
 
+# Save to cache
+        with open(cache_file, "w") as f:
+            json.dump(result, f, default=str)
+            
         return result
 
     except Exception as e:
