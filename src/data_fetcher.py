@@ -1,3 +1,13 @@
+import ssl
+import requests
+import urllib3
+urllib3.disable_warnings()
+
+import yfinance as yf
+
+# Create a session that bypasses SSL verification
+_session = requests.Session()
+_session.verify = False
 import yfinance as yf
 
 
@@ -23,7 +33,7 @@ def fetch_indian_stock(ticker: str, exchange: str = "NSE") -> dict:
     print(f"\nFetching live data for {full_ticker} from Yahoo Finance...")
 
     try:
-        stock = yf.Ticker(full_ticker)
+        stock = yf.Ticker(full_ticker, session=_session)
 
         # Three data sources from yfinance:
         info         = stock.info              # Market data, company overview
