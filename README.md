@@ -19,14 +19,16 @@ Built for finance professionals, students, and developers who want AI-assisted f
 
 ## 📐 Metrics Calculated
 
-| Metric | Formula | What It Tells You |
-|--------|---------|-------------------|
-| **Interest Coverage Ratio (ICR)** | EBIT ÷ Interest | Can the company pay its debt? |
-| **Coefficient of Variation (CV)** | Std Dev ÷ Mean Return | Risk per unit of return |
-| **Degree of Operating Leverage (DOL)** | Contribution Margin ÷ EBIT | Sensitivity to sales changes |
-| **Degree of Financial Leverage (DFL)** | EBIT ÷ EBT | Sensitivity to EBIT changes |
-| **EAT (Net Earnings After Tax)** | (EBIT − Interest) × (1 − tax rate) | Actual take-home earnings |
-
+| Metric | What It Tells You |
+|--------|-------------------|
+| **Interest Coverage Ratio (ICR)** | Can the company pay its debt? |
+| **Coefficient of Variation (CV)** | Risk per unit of return |
+| **Degree of Operating Leverage (DOL)** | Sensitivity to sales changes |
+| **Degree of Financial Leverage (DFL)** | Sensitivity to EBIT changes |
+| **EAT (Net Earnings After Tax)** | Actual take-home earnings |
+| **DuPont ROE Decomposition** | What is driving ROE — margin, efficiency, or debt? |
+| **Altman Z-Score** | Bankruptcy prediction (Safe / Grey / Distress zone) |
+| **NSE/BSE Live Data** | Real-time financials via Yahoo Finance — no manual input needed |
 ---
 
 ## 🚀 Quick Start
@@ -67,7 +69,7 @@ export ANTHROPIC_API_KEY=your-key-here
 > Get your free API key at https://console.anthropic.com
 
 ### 5. Run the agent
-```bash
+```bash`
 python src/agent.py
 ```
 
@@ -92,13 +94,14 @@ working capital cycles in next reporting period.
 
 ## 🛠️ Roadmap
 
-- [ ] Add PDF parser for corporate 10-K and Indian Annual Report filings
-- [ ] Integrate NSE/BSE live data via APIs for real-time ICR tracking
-- [ ] Expand to multi-company comparative analysis
-- [ ] Add DuPont decomposition and Altman Z-Score modules
-- [ ] Build a simple Streamlit dashboard for non-technical users
+- [x] Core financial metrics engine (ICR, CV, DOL, DFL)
+- [x] Claude-powered executive report generation
+- [x] NSE/BSE live data integration via yfinance
+- [x] DuPont decomposition and Altman Z-Score modules
+- [ ] PDF parser for Indian Annual Reports
+- [ ] Multi-company comparative analysis
 - [ ] Export reports to PDF and Word format
-
+- [ ] Streamlit dashboard for non-technical users
 ---
 
 ## 🧩 Project Structure
